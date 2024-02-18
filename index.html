@@ -15,6 +15,9 @@
             <img src="/images/search.png" alt="" />
           </div>
         </div>
+          <div class="error">
+            <p>Please Enter Currect City Name</p>
+          </div>
         <div class="Weather">
         <div class="WeatherInfo">
           <img src="images/mist.png" alt="" class="weather-img" />
@@ -26,7 +29,7 @@
             <img src="images/humidity.png" alt="" />
             <div class="flex">
               <p class="_2vw humadity-val">50%</p>
-              <p>Humadity</p>
+              <p>Humidity</p>
             </div>
           </div>
           <div class="wind">
@@ -52,7 +55,12 @@
 
       async function fetchWeather(city) {
         const resposnse = await fetch(url + city + `&appid=${apiKey}`);
-        var data = await resposnse.json();
+
+        if (resposnse.status == 404) {
+          document.querySelector(".error").style.display = "block";
+          document.querySelector(".Weather").style.display = "none";
+        }else{
+          var data = await resposnse.json();
         var temp = Math.floor(data.main.temp);
         
         document.querySelector(".city").innerHTML = data.name;
@@ -78,6 +86,10 @@
           weather_img.src = "images/snow.png";
         }
         document.querySelector(".Weather").style.display = "block"
+        document.querySelector(".error").style.display = "none";
+        }
+
+        
       }
 
       searchButton.addEventListener("click", () => {

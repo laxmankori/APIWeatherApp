@@ -96,6 +96,11 @@ body{
 .Weather{
     display: none;
 }
+.error{
+    margin-top: 1vw;
+    font-size: 0.9vw;
+    display: none;
+}
 
 @media screen and (max-width: 426px){
     .card{
@@ -146,6 +151,11 @@ body{
     }
     .windInfo{
         margin: 5vw 0;
+    }
+    .error{
+        margin-top: 2vw;
+        font-size: 3vw;
+        display: none;
     }
     
 }
